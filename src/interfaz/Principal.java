@@ -6,9 +6,11 @@
 
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author jtorres61
+ * @author dmunoz10
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -28,28 +30,174 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtNumeroUno = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        txtNumeroDos = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        txtResultado = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        cmdCalcular = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cmbOperacion = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("OPERACIONES CON DOS NUMEROS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 340, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        txtNumeroUno.setText("Numero Uno:");
+        getContentPane().add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 60, -1));
+
+        txtNumeroDos.setText("Numero Dos:");
+        getContentPane().add(txtNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 50, -1));
+
+        txtResultado.setText("Resultado:");
+        getContentPane().add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
+
+        jTextField3.setEditable(false);
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 60, -1));
+
+        cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+
+        jLabel2.setText("Operacion");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+
+        cmbOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suma", "Resta", "Multiplicacion", "Division" }));
+        getContentPane().add(cmbOperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+        String res;
+        double n1,n2, resultado=0;
+        int op;
+        
+        if(txtNumeroUno.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el numero uno", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroUno.requestFocusInWindow();
+        }
+        else if(txtNumeroDos.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el numero dos", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroDos.requestFocusInWindow();
+            
+        }
+        else{
+        n1 = Double.parseDouble(txtNumeroUno.getText());
+        n2 = Double.parseDouble(txtNumeroDos.getText());
+        op = cmbOperacion.getSelectedIndex();
+        
+        if (op ==0 && n2 ==0 ){
+            JOptionPane.showMessageDialog(this,"no digite cero en el sugundo numero","Error",JOptionPane.ERROR_MESSAGE);
+            txtNumeroDos.requestFocusInWindow();
+            
+        }else{
+        switch(op){
+            case 0:
+                resultado = n1 + n2;
+                break;
+            case 1:
+                resultado = n1 - n2;
+                break;
+            case 2: 
+                resultado = n1 * n2;
+                break;
+            case 3:
+                resultado = n1 / n2;
+                break;
+        }
+        
+        
+        res = String.valueOf(resultado);
+        txtResultado.setText(res);
+        }
+        }
+        
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        
+          
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtNumeroUno.setText("");
+        txtNumeroDos.setText("");
+        txtResultado.setText("");
+        
+        txtNumeroUno.requestFocusInWindow();
+        cmbOperacion.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+          }   
+              
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+     char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,8 +233,32 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    
+         if(cantidad1.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el numero uno", "Error", JOptionPane.ERROR_MESSAGE);
+           cantidad1.requestFocusInWindow();
+        }
+         if(cantidad2.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el numero dos", "Error", JOptionPane.ERROR_MESSAGE);
+            cantidad2.requestFocusInWindow();
+            
+             if(cantidad3.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el numero tres", "Error", JOptionPane.ERROR_MESSAGE);
+            cantidad3.requestFocusInWindow();
+        }
+        else{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox cmbOperacion;
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel txtNumeroDos;
+    private javax.swing.JLabel txtNumeroUno;
+    private javax.swing.JLabel txtResultado;
     // End of variables declaration//GEN-END:variables
 }
